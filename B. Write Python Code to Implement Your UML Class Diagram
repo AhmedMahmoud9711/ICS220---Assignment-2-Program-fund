@@ -1,0 +1,107 @@
+class Guest:
+    """Represents a hotel guest."""
+    
+    def __init__(self, guest_id, name, email, contact_number, loyalty_status):
+        self.__guest_id = guest_id
+        self.__name = name
+        self.__email = email
+        self.__contact_number = contact_number
+        self.__loyalty_status = loyalty_status
+
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
+        self.__name = name
+
+    def __str__(self):
+        return f"Guest[{self.__guest_id}]: {self.__name}, {self.__email}, Loyalty: {self.__loyalty_status}"
+
+
+class Room:
+    """Represents a hotel room."""
+    
+    def __init__(self, room_number, room_type, price_per_night, amenities, availability):
+        self.__room_number = room_number
+        self.__room_type = room_type
+        self.__price_per_night = price_per_night
+        self.__amenities = amenities
+        self.__availability = availability
+
+    def is_available(self):
+        return self.__availability
+
+    def __str__(self):
+        return f"Room[{self.__room_number}]: {self.__room_type}, ${self.__price_per_night}/night, Available: {self.__availability}"
+
+
+class Booking:
+    """Represents a room booking."""
+    
+    def __init__(self, booking_id, check_in_date, check_out_date, status):
+        self.__booking_id = booking_id
+        self.__check_in_date = check_in_date
+        self.__check_out_date = check_out_date
+        self.__status = status
+        self.__services = []
+
+    def add_service_request(self, service_request):
+        self.__services.append(service_request)
+
+    def __str__(self):
+        return f"Booking[{self.__booking_id}]: {self.__check_in_date} to {self.__check_out_date}, Status: {self.__status}"
+
+
+class Invoice:
+    """Represents an invoice for a booking."""
+    
+    def __init__(self, invoice_id, booking_id, amount, payment_method, discounts):
+        self.__invoice_id = invoice_id
+        self.__booking_id = booking_id
+        self.__amount = amount
+        self.__payment_method = payment_method
+        self.__discounts = discounts
+
+    def __str__(self):
+        return f"Invoice[{self.__invoice_id}]: BookingID {self.__booking_id}, Amount: ${self.__amount}, Payment: {self.__payment_method}"
+
+
+class LoyaltyProgram:
+    """Represents a guest’s loyalty program status."""
+    
+    def __init__(self, points, membership_level, rewards):
+        self.__points = points
+        self.__membership_level = membership_level
+        self.__rewards = rewards
+
+    def add_points(self, pts):
+        self.__points += pts
+
+    def __str__(self):
+        return f"Loyalty: {self.__membership_level}, Points: {self.__points}, Rewards: {self.__rewards}"
+
+
+class ServiceRequest:
+    """Represents a guest's request during stay."""
+    
+    def __init__(self, request_id, request_type, request_date, status):
+        self.__request_id = request_id
+        self.__request_type = request_type
+        self.__request_date = request_date
+        self.__status = status
+
+    def __str__(self):
+        return f"Request[{self.__request_id}]: {self.__request_type} on {self.__request_date}, Status: {self.__status}"
+
+
+class Feedback:
+    """Represents guest feedback after their stay."""
+    
+    def __init__(self, feedback_id, guest_id, rating, comments):
+        self.__feedback_id = feedback_id
+        self.__guest_id = guest_id
+        self.__rating = rating
+        self.__comments = comments
+
+    def __str__(self):
+        return f"Feedback[{self.__feedback_id}]: Guest {self.__guest_id}, Rating: {self.__rating}, Comment: {self.__comments}"
