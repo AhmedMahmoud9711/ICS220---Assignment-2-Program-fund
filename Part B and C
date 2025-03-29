@@ -1,6 +1,6 @@
 class Guest:
     """Represents a hotel guest."""
-    
+
     def __init__(self, guest_id, name, email, contact_number, loyalty_status):
         self.__guest_id = guest_id
         self.__name = name
@@ -20,7 +20,7 @@ class Guest:
 
 class Room:
     """Represents a hotel room."""
-    
+
     def __init__(self, room_number, room_type, price_per_night, amenities, availability):
         self.__room_number = room_number
         self.__room_type = room_type
@@ -37,7 +37,7 @@ class Room:
 
 class Booking:
     """Represents a room booking."""
-    
+
     def __init__(self, booking_id, check_in_date, check_out_date, status):
         self.__booking_id = booking_id
         self.__check_in_date = check_in_date
@@ -54,7 +54,7 @@ class Booking:
 
 class Invoice:
     """Represents an invoice for a booking."""
-    
+
     def __init__(self, invoice_id, booking_id, amount, payment_method, discounts):
         self.__invoice_id = invoice_id
         self.__booking_id = booking_id
@@ -68,7 +68,7 @@ class Invoice:
 
 class LoyaltyProgram:
     """Represents a guest’s loyalty program status."""
-    
+
     def __init__(self, points, membership_level, rewards):
         self.__points = points
         self.__membership_level = membership_level
@@ -83,7 +83,7 @@ class LoyaltyProgram:
 
 class ServiceRequest:
     """Represents a guest's request during stay."""
-    
+
     def __init__(self, request_id, request_type, request_date, status):
         self.__request_id = request_id
         self.__request_type = request_type
@@ -96,7 +96,7 @@ class ServiceRequest:
 
 class Feedback:
     """Represents guest feedback after their stay."""
-    
+
     def __init__(self, feedback_id, guest_id, rating, comments):
         self.__feedback_id = feedback_id
         self.__guest_id = guest_id
@@ -107,27 +107,74 @@ class Feedback:
         return f"Feedback[{self.__feedback_id}]: Guest {self.__guest_id}, Rating: {self.__rating}, Comment: {self.__comments}"
 
 
-class TestSuite:
+# Redefining classes after kernel reset for executing custom test suite again
+
+class Guest:
+    def __init__(self, guest_id, name, email, contact_number, loyalty_status):
+        self.__guest_id = guest_id
+        self.__name = name
+        self.__email = email
+        self.__contact_number = contact_number
+        self.__loyalty_status = loyalty_status
+
+    def __str__(self):
+        return f"Guest[{self.__guest_id}]: {self.__name}, {self.__email}, Loyalty: {self.__loyalty_status}"
+
+
+class Room:
+    def __init__(self, room_number, room_type, price_per_night, amenities, availability):
+        self.__room_number = room_number
+        self.__room_type = room_type
+        self.__price_per_night = price_per_night
+        self.__amenities = amenities
+        self.__availability = availability
+
+    def is_available(self):
+        return self.__availability
+
+    def __str__(self):
+        return f"Room[{self.__room_number}]: {self.__room_type}, ${self.__price_per_night} /night, Available: {self.__availability}"
+
+
+class Booking:
+    def __init__(self, booking_id, check_in_date, check_out_date, status):
+        self.__booking_id = booking_id
+        self.__check_in_date = check_in_date
+        self.__check_out_date = check_out_date
+        self.__status = status
+
+    def __str__(self):
+        return f"Booking[{self.__booking_id}]: {self.__check_in_date} to {self.__check_out_date}, Status: {self.__status}"
+
+
+class Invoice:
+    def __init__(self, invoice_id, booking_id, amount, payment_method, discounts):
+        self.__invoice_id = invoice_id
+        self.__booking_id = booking_id
+        self.__amount = amount
+        self.__payment_method = payment_method
+        self.__discounts = discounts
+
+    def __str__(self):
+        return f"Invoice[{self.__invoice_id}]: BookingID {self.__booking_id}, Amount: ${self.__amount}, Payment: {self.__payment_method}"
+
+
+# Re-running the customized test suite
+
+class TestSuiteCustom:
 
     def test_guest_account_creation(self):
         print("Testing Guest Account Creation:")
-        try:
-            guest1 = Guest(1, "Ali", "ali@example.com", "0501234567", "Gold")
-            print(guest1)
-        except Exception as e:
-            print("Failed to create guest1:", e)
-
-        try:
-            guest2 = Guest(2, "", "missingname@example.com", "0500000000", "Silver")  # name is missing
-            print(guest2)
-        except Exception as e:
-            print("Failed to create guest2:", e)
+        guest1 = Guest(1, "Ahmed", "Ahmed123@gmail.com", "0501234567", "Gold")
+        guest2 = Guest(2, "", "Mohd12457@gmail.com", "0500000000", "Silver")
+        print(guest1)
+        print(guest2)
         print()
 
     def test_search_available_rooms(self):
         print("Testing Searching for Available Rooms:")
-        room1 = Room(101, "Double", 300.0, "WiFi, TV", True)
-        room2 = Room(102, "Single", 200.0, "WiFi", False)
+        room1 = Room(5000, "single", 150.0, "WiFi, TV", True)
+        room2 = Room(5001, "double", 250.0, "WiFi", False)
 
         rooms = [room1, room2]
         available_rooms = [room for room in rooms if room.is_available()]
@@ -138,47 +185,37 @@ class TestSuite:
 
     def test_making_room_reservation(self):
         print("Testing Making a Room Reservation:")
-        booking1 = Booking(501, "2025-04-01", "2025-04-05", "Confirmed")
+        booking1 = Booking(5010, "2025-03-07", "2025-03-12", "Confirmed")
+        booking2 = Booking(5020, "2025-03-10", "2025-04-15", "Pending")
         print(booking1)
-
-        booking2 = Booking(502, "2025-04-10", "2025-04-08", "Pending")  # Invalid date logic, but no check coded
         print(booking2)
         print()
 
     def test_booking_confirmation_notification(self):
         print("Testing Booking Confirmation Notification:")
-        try:
-            booking = Booking(601, "2025-05-01", "2025-05-03", "Confirmed")
-            print("Notification: Booking confirmed for", booking)
-        except Exception as e:
-            print("Notification failed:", e)
+        booking = Booking(6010, "2025-03-07", "2025-02-12", "Confirmed")
+        print("Notification: Booking confirmed for", booking)
         print()
 
     def test_invoice_generation(self):
         print("Testing Invoice Generation for a Booking:")
-        try:
-            invoice = Invoice(701, 501, 1200.0, "Credit Card", 100.0)
-            print(invoice)
-        except Exception as e:
-            print("Failed to generate invoice:", e)
+        invoice = Invoice(7010, 5010, 1250.0, "Credit Card", 0.0)
+        print(invoice)
         print()
 
     def test_payment_processing(self):
         print("Testing Processing Different Payment Methods:")
-        try:
-            invoice1 = Invoice(801, 502, 1000.0, "Debit Card", 0.0)
-            invoice2 = Invoice(802, 503, 900.0, "Mobile Wallet", 50.0)
-            print(invoice1)
-            print(invoice2)
-        except Exception as e:
-            print("Payment processing failed:", e)
+        invoice1 = Invoice(8010, 5020, 1000.0, "Debit Card", 0.0)
+        invoice2 = Invoice(8020, 5030, 900.0, "Cash", 0.0)
+        print(invoice1)
+        print(invoice2)
         print()
 
     def test_reservation_history(self):
         print("Testing Displaying Reservation History:")
         guest_bookings = [
-            Booking(901, "2025-06-01", "2025-06-05", "Completed"),
-            Booking(902, "2025-07-01", "2025-07-04", "Cancelled"),
+            Booking(9010, "2025-04-01", "2025-04-10", "Completed"),
+            Booking(9020, "2025-07-04", "2025-07-07", "Cancelled"),
         ]
         for booking in guest_bookings:
             print(booking)
@@ -188,19 +225,18 @@ class TestSuite:
         print("Testing Cancellation of a Reservation:")
         booking = Booking(1001, "2025-08-01", "2025-08-03", "Confirmed")
         print("Before cancellation:", booking)
-        # Simulate cancellation
-        booking._Booking__status = "Cancelled"  # Accessing private attribute directly for simulation
+        booking._Booking__status = "Cancelled"
         print("After cancellation:", booking)
         print()
 
 
-# Create an instance of the test suite and run all test cases
-test_suite = TestSuite()
-test_suite.test_guest_account_creation()
-test_suite.test_search_available_rooms()
-test_suite.test_making_room_reservation()
-test_suite.test_booking_confirmation_notification()
-test_suite.test_invoice_generation()
-test_suite.test_payment_processing()
-test_suite.test_reservation_history()
-test_suite.test_cancellation_of_reservation()
+# Run customized test cases
+custom_suite = TestSuiteCustom()
+custom_suite.test_guest_account_creation()
+custom_suite.test_search_available_rooms()
+custom_suite.test_making_room_reservation()
+custom_suite.test_booking_confirmation_notification()
+custom_suite.test_invoice_generation()
+custom_suite.test_payment_processing()
+custom_suite.test_reservation_history()
+custom_suite.test_cancellation_of_reservation()
