@@ -1,5 +1,3 @@
-
-
 class Guest:
     def __init__(self, guest_id, name, email, contact_number, loyalty_status):
         self.__guest_id = guest_id
